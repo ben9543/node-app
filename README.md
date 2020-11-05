@@ -3,7 +3,9 @@
 ## Installation
 ```bash
 git clone https://github.com/Bundy-Mundi/node-app.git
+
 npm install 
+
 npm run dev
 ```
 
