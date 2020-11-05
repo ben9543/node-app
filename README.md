@@ -1,5 +1,12 @@
 # Simple Node App with Express 
 
+## Installation
+```bash
+git clone <repo url>
+npm install 
+npm run dev
+```
+
 ### Features
 
 - Basic babel setup for ES6
