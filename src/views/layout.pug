@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        include partials/head.pug
+        title Sample | #{pageTitle || "Unknown Page"}
+    body
+        include partials/header.pug
+        if userId
+            p #{userId}
+        main 
+            block content
+        
+        include partials/footer.pug
+
+        block scripts
+            script(src='/static/js/modal.js')

@@ -36,6 +36,8 @@ let redisClient = REDIS_ON ? redis.createClient({
 
 const SessionStore = REDIS_ON ? ( new RedisStore({ client: redisClient }) ) : ( new MemoryStore({}) );
 
+app.set('views', './src/views')
+app.set('view engine', 'pug');
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: SESSION_ID,
@@ -67,8 +69,15 @@ app.get("/", (req, res) => {
     //redisClient.on('error', console.error)
     const { userId } = req.session;
     console.log(userId)
-    if(!userId)res.sendFile(path.join(__dirname, "views/index.html"));
-    else res.sendFile(path.join(__dirname, "views/authenticated.html"));
+    res.render("pages/home.pug", {userId});
+});
+
+// Admin Router(temp)
+app.get("/admin", (req, res) => {
+    res.render("admin/adminHome.pug", { content: "Dynamic Content", title: "Test" });
+});
+app.get("/admin/upload", (req, res) => {
+    res.render("admin/adminUpload.pug", { content: "Dynamic Content", title: "Test" });
 });
 
 // POST

@@ -1,0 +1,20 @@
+#header {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+#nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#menu{
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

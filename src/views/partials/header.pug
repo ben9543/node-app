@@ -1,0 +1,32 @@
+.modal-bg
+.modal.modal-login
+  form(action='/login' method='POST')
+    h2 Login
+    label(for='email-input') Email
+    input#email-input(name='email' type='text')
+    label(for='email-input') Password
+    input#password-input(name='password' type='text')
+    button(type='submit') Login
+.modal.modal-register
+  form(action='/register' method='POST')
+    h2 Register
+    input(name='name' type='text')
+    input(name='email' type='text')
+    input(name='password' type='text')
+    button(type='submit') Register
+header#header
+    nav#nav
+        ul#menu
+            li 
+                a(href="/") home
+            li 
+                a(href="/") music
+            li 
+                a(href="/") gallery
+        if !userId
+            div(style='width: 10rem; display: flex; align-items: center; justify-content: space-between;')
+                a#login-btn(style='cursor: pointer;') Login
+                a#register-btn(style='cursor: pointer;') Register
+        else 
+            form(action='/logout' method='POST')
+                button#logout-btn(type='submit') Logout
