@@ -1,6 +1,10 @@
 extends ../layout.pug
 
 block content
+    .error-message
+        if loginFailed
+            p You are seeing this message because login has failed. Try it again.
     #home-container
         #main-image
+    
         

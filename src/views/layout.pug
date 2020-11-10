@@ -7,8 +7,6 @@ html(lang="en")
         title Sample | #{pageTitle || "Unknown Page"}
     body
         include partials/header.pug
-        if userId
-            p #{userId}
         main 
             block content
         

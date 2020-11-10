@@ -23,6 +23,9 @@ header#header
                 a(href="/") music
             li 
                 a(href="/") gallery
+            if isAdmin
+                li
+                    a(href="/admin") Admin
         if !userId
             div(style='width: 10rem; display: flex; align-items: center; justify-content: space-between;')
                 a#login-btn(style='cursor: pointer;') Login

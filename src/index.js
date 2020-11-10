@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import redis from "redis";
+import { authAdmin, authUser, setLocals, setQueryString } from "./middlewares";
 let RedisStore = require('connect-redis')(session)
 
 const app = express();
@@ -25,9 +26,9 @@ const REDIS_ON = false;
 
 // Needs to replaced by Redis or Mongo
 const DB = [
-    { id: 1, name: "Ben", email:"ben@gmail.com", password: "1234"},
-    { id: 2, name: "Bennie", email:"bennie@gmail.com", password: "1234"},
-    { id: 3, name: "master", email:"master@gmail.com", password: "1234"},
+    { id: 1, name: "Ben", email:"ben@gmail.com", password: "1234", isAdmin: false},
+    { id: 2, name: "Bennie", email:"bennie@gmail.com", password: "1234", isAdmin: false},
+    { id: 3, name: "master", email:"master@gmail.com", password: "1234", isAdmin: true},
 ]
 let redisClient = REDIS_ON ? redis.createClient({
     host: REDIS_HOST,
@@ -58,40 +59,45 @@ app.use(morgan('dev'));
 app.use(helmet());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
-// Custom Middleware
-const redirectHome = (req, res, next) => {
-    const { userId } = req.session;
-    userId ? res.redirect("/") : next();
-};
-
 // GET
-app.get("/", (req, res) => {
-    //redisClient.on('error', console.error)
-    const { userId } = req.session;
-    console.log(userId)
-    res.render("pages/home.pug", {userId});
+app.get("/", setLocals, setQueryString, (req, res) => {
+    res.render("pages/home.pug");
 });
 
 // Admin Router(temp)
-app.get("/admin", (req, res) => {
+app.get("/admin", authAdmin, (req, res) => {
     res.render("admin/adminHome.pug", { content: "Dynamic Content", title: "Test" });
 });
-app.get("/admin/upload", (req, res) => {
+app.get("/admin/upload", authAdmin, (req, res) => {
     res.render("admin/adminUpload.pug", { content: "Dynamic Content", title: "Test" });
 });
 
-// POST
-app.post("/login", redirectHome, (req, res) => {
-    const { email, password } = req.body;
-    if(email && password){
-        const user = DB.find(user => user.email === email && user.password === password)
-        if (user) req.session.userId = user.id;
-        res.redirect("/");
-    }
-    res.sendFile(path.join(__dirname, "views/loginError.html"));
+// Errors
+app.get("/errors/403", (req, res) => {
+    res.render("403.pug");
 });
 
-app.post("/register", redirectHome, (req, res) => {
+app.get("/errors/404", (req, res) => {
+    res.render("404.pug");
+});
+// POST
+app.post("/login", authUser, (req, res) => {
+    const { email, password } = req.body;
+    if(email && password){
+        const user = DB.find(user => (user.email === email) && (user.password === password))
+        if (user) { 
+            req.session.userId = user.id; 
+            req.session.isAdmin = user.isAdmin;
+            res.redirect("/");
+        }
+        else {
+            res.redirect("/?loginFailed=true");
+        }
+    }
+    else res.redirect("/errors/404");
+});
+
+app.post("/register", authUser, (req, res) => {
     // Check if the user already exists
 });
 app.post("/logout", (req, res) => {
