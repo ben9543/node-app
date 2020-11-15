@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         include partials/head.pug
-        title Sample | #{pageTitle || "Unknown Page"}
+        title #{siteName} | #{pageTitle || "Unknown Page"}
     body
         include partials/header.pug
         main 

@@ -6,7 +6,9 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import redis from "redis";
-import { authAdmin, authUser, setLocals, setQueryString } from "./middlewares";
+import adminRouter from "./routers/adminRouter";
+import { authAdmin, authUser, setLocals, setQueryString, setLocalsAdmin } from "./middlewares";
+
 let RedisStore = require('connect-redis')(session)
 
 const app = express();
@@ -64,14 +66,6 @@ app.get("/", setLocals, setQueryString, (req, res) => {
     res.render("pages/home.pug");
 });
 
-// Admin Router(temp)
-app.get("/admin", authAdmin, (req, res) => {
-    res.render("admin/adminHome.pug", { content: "Dynamic Content", title: "Test" });
-});
-app.get("/admin/upload", authAdmin, (req, res) => {
-    res.render("admin/adminUpload.pug", { content: "Dynamic Content", title: "Test" });
-});
-
 // Errors
 app.get("/errors/403", (req, res) => {
     res.render("403.pug");
@@ -105,5 +99,8 @@ app.post("/logout", (req, res) => {
     res.clearCookie(SESSION_ID);
     res.redirect("/");
 });
+
+// Admin Router
+app.use("/admin", authAdmin, setLocalsAdmin, adminRouter);
 
 app.listen(PORT, () => console.log(`\nListening On: http://localhost:${PORT}\n\nMode: ${NODE_ENV}`));

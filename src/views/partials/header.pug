@@ -17,7 +17,7 @@
 header#header
     nav#nav
         ul#menu
-            li 
+            li
                 a(href="/") home
             li 
                 a(href="/") music
@@ -28,8 +28,8 @@ header#header
                     a(href="/admin") Admin
         if !userId
             div(style='width: 10rem; display: flex; align-items: center; justify-content: space-between;')
-                a#login-btn(style='cursor: pointer;') Login
-                a#register-btn(style='cursor: pointer;') Register
+                a#login-btn.bold(style='cursor: pointer;') Login
+                a#register-btn.bold(style='cursor: pointer;') Register
         else 
             form(action='/logout' method='POST')
                 button#logout-btn(type='submit') Logout

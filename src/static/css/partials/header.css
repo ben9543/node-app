@@ -18,3 +18,16 @@
     align-items: center;
     justify-content: space-between;
 }
+#menu li{
+    min-width: 5rem;
+    
+}
+#menu li a {
+    color: #218c74;
+}
+#login-btn{
+    color: #1e272e;
+}
+#register-btn{
+    color: #1e272e;
+}

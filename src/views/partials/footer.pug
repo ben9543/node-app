@@ -1,2 +1,22 @@
 footer#footer
-    h1 Footer
+    .footer__container
+        .info
+            .phone.__info
+                p.bold Phone:
+                p #{phoneNumber || "000-0000-0000"}
+            .email.__info
+                p.bold Email:
+                p #{email || "sample@gmail.com"}
+            .address.__info
+                p.bold Address:
+                p  #{address ||"CA Santa Monica 1900 Pico Blvd"}
+        .social-media
+            .social-media__container
+                a(href="#")
+                    <i class="fab fa-facebook-f"></i>
+                a(href="#")
+                    <i class="fab fa-twitter"></i>
+                a(href="#")
+                    <i class="fab fa-github-alt"></i>
+                a(href="#")
+                    <i class="fab fa-google"></i>
