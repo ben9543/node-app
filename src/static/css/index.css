@@ -1,11 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* Default */
+@import "./reset.css";
+
+/* Animation */
 @import "./animation/fade-in.css";
 
+/* Partials */
 @import "./partials/header.css";
 @import "./partials/footer.css";
 @import "./partials/modal.css";
-@import "./reset.css";
 
+/* Pages */
 @import "./pages/home.css";
 
 body{
@@ -13,7 +17,7 @@ body{
     -moz-box-sizing: border-box !important;
     box-sizing: border-box !important;
     font-family: "Poppins", sans-serif;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     font-size: 0.9rem;
     letter-spacing: -0.03rem;
 }
@@ -34,7 +38,4 @@ ul{
 }
 li{
     list-style: none;
-}
-.bold{
-    font-weight: 600;
 }

@@ -21,6 +21,7 @@ const {
     NODE_ENV = 'development',
 } = process.env;
 
+const port = PORT || 5000;
 const IS_PROD = (NODE_ENV === 'production');
 
 // Make this true if you have redis server ready in-serve
@@ -47,7 +48,7 @@ app.use(session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { 
+    cookie: {
         secure: IS_PROD,
         maxAge: 1000 * 60 * 60 * 2, // 2hours
         sameSite: true
@@ -79,8 +80,8 @@ app.post("/login", authUser, (req, res) => {
     const { email, password } = req.body;
     if(email && password){
         const user = DB.find(user => (user.email === email) && (user.password === password))
-        if (user) { 
-            req.session.userId = user.id; 
+        if (user) {
+            req.session.userId = user.id;
             req.session.isAdmin = user.isAdmin;
             res.redirect("/");
         }
@@ -103,4 +104,4 @@ app.post("/logout", (req, res) => {
 // Admin Router
 app.use("/admin", authAdmin, setLocalsAdmin, adminRouter);
 
-app.listen(PORT, () => console.log(`\nListening On: http://localhost:${PORT}\n\nMode: ${NODE_ENV}`));
+app.listen(port, () => console.log(`\nListening On: http://localhost:${port}\n\nMode: ${NODE_ENV}`));

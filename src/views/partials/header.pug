@@ -1,6 +1,6 @@
 .modal-bg
 .modal.modal-login
-  form(action='/login' method='POST')
+  form.h-64.w-48(action='/login' method='POST')
     h2 Login
     label(for='email-input') Email
     input#email-input(name='email' type='text')
@@ -8,7 +8,7 @@
     input#password-input(name='password' type='text')
     button(type='submit') Login
 .modal.modal-register
-  form(action='/register' method='POST')
+  form.h-64.w-48.transition-opacity(action='/register' method='POST')
     h2 Register
     input(name='name' type='text')
     input(name='email' type='text')
@@ -19,9 +19,9 @@ header#header
         ul#menu
             li
                 a(href="/") home
-            li 
+            li
                 a(href="/") music
-            li 
+            li
                 a(href="/") gallery
             if isAdmin
                 li
@@ -30,6 +30,6 @@ header#header
             div(style='width: 10rem; display: flex; align-items: center; justify-content: space-between;')
                 a#login-btn.bold(style='cursor: pointer;') Login
                 a#register-btn.bold(style='cursor: pointer;') Register
-        else 
+        else
             form(action='/logout' method='POST')
                 button#logout-btn(type='submit') Logout
