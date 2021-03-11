@@ -9,6 +9,7 @@ import redis from "redis";
 import adminRouter from "./routers/adminRouter";
 import { authAdmin, authUser, setLocals, setQueryString, setLocalsAdmin } from "./middlewares";
 
+
 let RedisStore = require('connect-redis')(session)
 
 const app = express();
@@ -40,6 +41,7 @@ let redisClient = REDIS_ON ? redis.createClient({
 
 const SessionStore = REDIS_ON ? ( new RedisStore({ client: redisClient }) ) : ( new MemoryStore({}) );
 
+/* Pug setup */
 app.set('views', './src/views')
 app.set('view engine', 'pug');
 app.set('trust proxy', 1) // trust first proxy
@@ -56,26 +58,27 @@ app.use(session({
     store: SessionStore
 }));
 
+/* Middlewares */
 app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
-// GET
+/* GET */
 app.get("/", setLocals, setQueryString, (req, res) => {
     res.render("pages/home.pug");
 });
 
-// Errors
+/* Errors */
 app.get("/errors/403", (req, res) => {
     res.render("403.pug");
 });
-
 app.get("/errors/404", (req, res) => {
     res.render("404.pug");
 });
-// POST
+
+/* POST */
 app.post("/login", authUser, (req, res) => {
     const { email, password } = req.body;
     if(email && password){
@@ -91,7 +94,6 @@ app.post("/login", authUser, (req, res) => {
     }
     else res.redirect("/errors/404");
 });
-
 app.post("/register", authUser, (req, res) => {
     // Check if the user already exists
 });
@@ -101,7 +103,8 @@ app.post("/logout", (req, res) => {
     res.redirect("/");
 });
 
-// Admin Router
+/* Admin Router */
 app.use("/admin", authAdmin, setLocalsAdmin, adminRouter);
 
+/* Server */
 app.listen(port, () => console.log(`\nListening On: http://localhost:${port}\n\nMode: ${NODE_ENV}`));
