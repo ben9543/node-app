@@ -1,20 +1,18 @@
 .modal-bg
-.modal.modal-login
-  form.h-64.w-48(action='/login' method='POST')
-    h2 Login
-    label(for='email-input') Email
-    input#email-input(name='email' type='text')
-    label(for='email-input') Password
-    input#password-input(name='password' type='text')
+.modal.modal-login.rounded.shadow
+  form.h-64.w-48.flex.flex-col.flex-wrap.justify-content.justify-evenly.items-center(action='/login' method='POST')
+    h2.text-xl.font-bold Login
+    input(name='email' type='email' required placeholder="email" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500")
+    input(name='password' type='password' required placeholder="password" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500")
     button(type='submit') Login
-.modal.modal-register
-  form.h-64.w-48.transition-opacity(action='/register' method='POST')
-    h2 Register
-    input(name='name' type='text')
-    input(name='email' type='text')
-    input(name='password' type='text')
-    button(type='submit') Register
-header#header
+.modal.modal-register.rounded.shadow
+  form.h-64.w-48.flex.flex-col.flex-wrap.justify-content.justify-evenly.items-center(action='/register' method='POST')
+    h2.text-xl.font-bold Register
+    input(name='name' type='text' required placeholder="name" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500")
+    input(name='email' type='email' required placeholder="email" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500")
+    input(name='password' type='password' required placeholder="password" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500")
+    button.border.border-black-100.px-3.py-2.rounded(type='submit') Submit
+header#header.fixed.w-full.bg-white.bg-opacity-80.shadow-lg
     nav#nav
         ul#menu
             li

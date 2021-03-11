@@ -6,11 +6,11 @@ const register = Array.from(document.getElementsByClassName("modal-register"))[0
 
 if(loginBtn) loginBtn.addEventListener("click", ()=>{
     modalBg.style.visibility = "visible";
-    login.style.display = "block";
+    login.style.display = "grid";
 });
 if(registerBtn) registerBtn.addEventListener("click", ()=>{
     modalBg.style.visibility = "visible";
-    register.style.display = "block";
+    register.style.display = "grid";
 });
 if(modalBg) modalBg.addEventListener("click", (e)=>{
     const target = e.target;

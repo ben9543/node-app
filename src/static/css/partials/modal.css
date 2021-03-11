@@ -1,4 +1,4 @@
-.modal-bg{ 
+.modal-bg{
     position: fixed;
     top:0;
     left:0;
@@ -20,7 +20,9 @@
 }
 .modal-login {
     display: none;
+    place-items: center;
 }
 .modal-register {
     display: none;
+    place-items: center;
 }
