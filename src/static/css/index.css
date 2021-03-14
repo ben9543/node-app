@@ -11,6 +11,16 @@
 
 /* Pages */
 @import "./pages/home.css";
+@import "./pages/chat.css";
+
+/* Custom */
+#container{
+    height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    top: 5rem;
+}
 
 body{
     -webkit-box-sizing: border-box !important;

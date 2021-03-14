@@ -18,6 +18,7 @@ export const authAdmin = (req, res, next) => {
 
 export const setLocals = (req, res, next) => {
     const { userId, isAdmin } = req.session;
+    console.log(userId, isAdmin);
     res.locals.siteName = process.env.SITE_NAME || "Sample";
     res.locals.userId = userId;
     res.locals.isAdmin = isAdmin;
