@@ -1,0 +1,20 @@
+#chat-container{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+#chat-box{
+    display: grid;
+    place-items: center;
+    height: 20rem;
+    width: 20rem;
+}
+
+#chat-form{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}

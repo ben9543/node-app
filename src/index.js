@@ -69,6 +69,9 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 app.get("/", setLocals, setQueryString, (req, res) => {
     res.render("pages/home.pug");
 });
+app.get("/chat", setLocals, (req, res) => {
+    res.render("pages/chat.pug");
+});
 
 /* Errors */
 app.get("/errors/403", (req, res) => {
