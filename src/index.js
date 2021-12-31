@@ -22,7 +22,7 @@ const {
     NODE_ENV = 'development',
 } = process.env;
 
-const port = PORT || 5000;
+const port = PORT || 3000;
 const IS_PROD = (NODE_ENV === 'production');
 
 // Make this true if you have redis server ready in-serve
